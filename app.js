@@ -1,5 +1,6 @@
 let myLibrary = [];
 const libraryContainer = document.querySelector(".library-container");
+let libraryItems = document.querySelectorAll(".library-item");
 
 function Book(name, author, numberOfPages, isRead, rating) {
   this.name = name;
@@ -22,7 +23,18 @@ function addBookToLibrary(book) {
   myLibrary.push(book);
 }
 
+function removeBookFromLibrary(book) {
+  delete myLibrary[book];
+}
+
 function updateLibrary() {
+  libraryItems = document.querySelectorAll(".library-item");
+  libraryItems.forEach((i) => {
+    // Dont remove first child which acts as a caption
+    if (i.id != "caption") {
+      i.remove();
+    }
+  });
   for (book in myLibrary) {
     const libraryItem = document.createElement("div");
     libraryItem.classList.add("library-item");
@@ -57,8 +69,15 @@ function updateLibrary() {
     libraryItem.appendChild(bookRating);
     bookRating.textContent = myLibrary[book].rating + "/5";
 
-    const deleteButton = document.createElement("button");
+    const deleteButton = document.createElement("div");
     libraryItem.appendChild(deleteButton);
+    deleteButton.classList.add("book-delete");
+    deleteButton.innerHTML = `<box-icon type="solid" color="#fdf0d5" name="trash" id="${book}"></box-icon>`;
+    deleteButton.addEventListener("click", (e) => {
+      console.log(e.target);
+      removeBookFromLibrary(Number(e.target.id));
+      updateLibrary();
+    });
   }
 }
 
