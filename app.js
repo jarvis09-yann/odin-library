@@ -72,7 +72,7 @@ function updateLibrary() {
     const deleteButton = document.createElement("div");
     libraryItem.appendChild(deleteButton);
     deleteButton.classList.add("book-delete");
-    deleteButton.innerHTML = `<box-icon type="solid" color="#fdf0d5" name="trash" id="${book}"></box-icon>`;
+    deleteButton.innerHTML = `<box-icon type="solid" color="#fdf0d5" name="trash" animation="tada-hover" id="${book}"></box-icon>`;
     deleteButton.addEventListener("click", (e) => {
       console.log(e.target);
       removeBookFromLibrary(Number(e.target.id));
