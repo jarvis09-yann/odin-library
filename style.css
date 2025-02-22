@@ -18,8 +18,28 @@ body {
   font-family: "Poppins", sans-serif;
   background-color: var(--c-bg);
   color: var(--c-text);
+  padding-top: 32px;
 }
 
 h1 {
   text-align: center;
+}
+
+.library-container {
+  padding: 32px 5vw;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-auto-rows: 64px;
+}
+
+.library-item {
+  background-color: var(--c-light);
+  display: grid;
+  grid-template-columns: 4fr 3fr 1fr 1fr 1fr 0.5fr;
+  grid-template-rows: 1fr;
+  place-items: center;
+}
+
+.library-container > div:first-of-type {
+  background-color: var(--c-accent-light);
 }
