@@ -28,8 +28,36 @@
         <div class="book-author">Author</div>
         <div class="book-length">No of pages</div>
         <div class="book-isread">Status</div>
-        <div class="book-rating">Rating</div>
         <div class="book-delete">Delete</div>
+      </div>
+    </div>
+    <div class="item-add-button">
+      <box-icon name="plus" color="#fdf0d5" size="lg"></box-icon>
+    </div>
+    <div class="item-add-modal-container hidden">
+      <div class="item-add-modal">
+        <form class="item-add-modal-form">
+          <div class="modal-close-container">
+            <box-icon name="x" color="#fdf0d5" size="lg"></box-icon>
+          </div>
+          <p>
+            <label for="name">Name</label>
+            <input type="text" name="name" id="name" />
+          </p>
+          <p>
+            <label for="author">Author</label>
+            <input type="text" name="author" id="author" />
+          </p>
+          <p>
+            <label for="numberOfPages">Number of pages</label>
+            <input type="number" name="numberOfPages" id="numberOfPages" />
+          </p>
+          <p class="item-add-modal-form-isread">
+            <label for="isRead">Is read</label>
+            <input type="checkbox" name="isRead" id="isRead" />
+          </p>
+          <button id="submit">Submit</button>
+        </form>
       </div>
     </div>
     <footer>

@@ -1,22 +1,34 @@
 let myLibrary = [];
 const libraryContainer = document.querySelector(".library-container");
 let libraryItems = document.querySelectorAll(".library-item");
+const itemAddButton = document.querySelector(".item-add-button");
+const itemAddModalContainer = document.querySelector(
+  ".item-add-modal-container"
+);
+const modalCloseButton = document.querySelector(".modal-close-container");
+let modalFields = {
+  name: document.querySelector("#name").value,
+  author: document.querySelector("#author").value,
+  numberOfPages: Number(document.querySelector("#numberOfPages").value),
+  isRead: Boolean(document.querySelector("#isRead").value),
+};
 
-function Book(name, author, numberOfPages, isRead, rating) {
+const modalSubmitButton = document.querySelector("#submit");
+
+function Book(name, author, numberOfPages, isRead) {
   this.name = name;
   this.author = author;
   this.numberOfPages = numberOfPages;
   this.isRead = isRead;
-  this.rating = rating;
 }
 
-addBookToLibrary(new Book("Dune", "Frank Herbert", 412, true, 5));
-addBookToLibrary(new Book("The Hobbit", "J.R.R. Tolkien", 310, true, 5));
-addBookToLibrary(new Book("1984", "George Orwell", 328, true, 4.5));
-addBookToLibrary(new Book("Brave New World", "Aldous Huxley", 311, false, 3));
-addBookToLibrary(new Book("Fahrenheit 451", "Ray Bradbury", 249, true, 4));
+addBookToLibrary(new Book("Dune", "Frank Herbert", 412, true));
+addBookToLibrary(new Book("The Hobbit", "J.R.R. Tolkien", 310, true));
+addBookToLibrary(new Book("1984", "George Orwell", 328, true));
+addBookToLibrary(new Book("Brave New World", "Aldous Huxley", 311, false));
+addBookToLibrary(new Book("Fahrenheit 451", "Ray Bradbury", 249, true));
 addBookToLibrary(
-  new Book("The Catcher in the Rye", "J.D. Salinger", 277, false, 4)
+  new Book("The Catcher in the Rye", "J.D. Salinger", 277, false)
 );
 
 function addBookToLibrary(book) {
@@ -64,11 +76,6 @@ function updateLibrary() {
       bookIsRead.textContent = "Not read";
     }
 
-    const bookRating = document.createElement("div");
-    bookRating.classList.add("book-rating");
-    libraryItem.appendChild(bookRating);
-    bookRating.textContent = myLibrary[book].rating + "/5";
-
     const deleteButton = document.createElement("div");
     libraryItem.appendChild(deleteButton);
     deleteButton.classList.add("book-delete");
@@ -82,3 +89,41 @@ function updateLibrary() {
 }
 
 updateLibrary();
+
+itemAddButton.addEventListener("click", () => {
+  itemAddModalContainer.classList.remove("hidden");
+});
+
+modalCloseButton.addEventListener("click", () => {
+  itemAddModalContainer.classList.add("hidden");
+});
+
+// itemAddModalContainer.addEventListener("click", () => {
+//   itemAddModalContainer.style.display = "none";
+// });
+
+modalSubmitButton.addEventListener("click", (e) => {
+  e.preventDefault();
+  modalFields = {
+    name: document.querySelector("#name").value,
+    author: document.querySelector("#author").value,
+    numberOfPages: Number(document.querySelector("#numberOfPages").value),
+    isRead: Boolean(document.querySelector("#isRead").value),
+  };
+  if (
+    modalFields.name != "" &&
+    modalFields.author != "" &&
+    numberOfPages != 0
+  ) {
+    addBookToLibrary(
+      new Book(
+        modalFields.name,
+        modalFields.author,
+        modalFields.numberOfPages,
+        numberOfPages.isRead
+      )
+    );
+    updateLibrary();
+    itemAddModalContainer.classList.add("hidden");
+  }
+});
