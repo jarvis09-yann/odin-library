@@ -174,3 +174,13 @@ input[type="checkbox"] {
 .hidden {
   display: none;
 }
+
+.book-isread {
+  cursor: pointer;
+  text-align: center;
+  line-height: 10px;
+}
+
+.book-isread span {
+  font-size: 10px;
+}

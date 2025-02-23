@@ -69,12 +69,21 @@ function updateLibrary() {
 
     const bookIsRead = document.createElement("div");
     bookIsRead.classList.add("book-isread");
+    bookIsRead.id = book;
     libraryItem.appendChild(bookIsRead);
     if (myLibrary[book].isRead) {
       bookIsRead.textContent = "Read";
     } else {
       bookIsRead.textContent = "Not read";
     }
+    bookIsRead.addEventListener("click", (e) => {
+      if (myLibrary[e.target.id].isRead) {
+        myLibrary[e.target.id].isRead = false;
+      } else {
+        myLibrary[e.target.id].isRead = true;
+      }
+      updateLibrary();
+    });
 
     const deleteButton = document.createElement("div");
     libraryItem.appendChild(deleteButton);
